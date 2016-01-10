@@ -734,7 +734,7 @@ class PHPGraphLib {
 		}
 	}
 
-	protected function imagelinedashed(&$image_handle, $x_axis_x1, $yLocation, $x_axis_x2 , $yLocation, $color) 
+	protected function imagelinedashed(&$image_handle, $x_axis_x1, $yLocation, $x_axis_x2, $color)
 	{
 		$step  = 3;
 		for ($i = $x_axis_x1; $i < $x_axis_x2 -1; $i += ($step*2)) {
@@ -770,7 +770,7 @@ class PHPGraphLib {
 			$yLocation = round(($this->x_axis_y1 - ($yLocation * $this->unit_scale) + $adjustment));
 
 			if ($style == 'dashed') {
-				$this->imagelinedashed($this->image, $this->x_axis_x1, $yLocation, $this->x_axis_x2 , $yLocation, $color);
+				$this->imagelinedashed($this->image, $this->x_axis_x1, $yLocation, $this->x_axis_x2, $color);
 			} else {
 				//a solid line is the default if a style condition is not matched
 				imageline($this->image, $this->x_axis_x1, $yLocation, $this->x_axis_x2 , $yLocation, $color);
