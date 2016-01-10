@@ -950,17 +950,21 @@ class PHPGraphLib {
 
 		//get rid of bad data, find max, min
 		$low_x = 0;
-		$hgh_x = 0;
+		$high_x = 0;
 		$force_set_x = 1;
 		foreach ($this->data_array as $data_set_num => $data_set) {
 			foreach ($data_set as $key => $item) {
 				if ($force_set_x) {
 					$low_x = $key;
-					$hgh_x = $key;
+					$high_x = $key;
 					$force_set_x = 0;
 				}
-				if ($key < $low_x) $low_x = $key;
-				if ($key > $hgh_x) $hgh_x = $key;
+				if ($key < $low_x) {
+					$low_x = $key;
+				}
+				if ($key > $high_x) {
+					$high_x = $key;
+				}
 				if (!is_numeric($item)) {
 					unset($this->data_array[$data_set_num][$key]);
 					continue;
@@ -979,9 +983,11 @@ class PHPGraphLib {
 			}
 		}
 		$this->lowest_x = $low_x;
-		$this->highest_x = $hgh_x;
-		$raw_size = $hgh_x - $low_x +1;
-		if ($raw_size > $this->data_count) $this->data_count = $raw_size;
+		$this->highest_x = $high_x;
+		$raw_size = $high_x - $low_x +1;
+		if ($raw_size > $this->data_count) {
+			$this->data_count = $raw_size;
+		}
 
 		//number of valid data sets
 		$this->data_set_count = count($this->data_array);
