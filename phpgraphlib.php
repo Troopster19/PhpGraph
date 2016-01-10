@@ -1200,9 +1200,9 @@ class PHPGraphLib {
         {
             switch (strtolower($currency_type)) {
                 case 'dollar': $this->data_currency = '$'; break;
-                case 'yen': $this->data_currency = '¥'; break;
-                case 'pound': $this->data_currency = '£'; break;
-                case 'lira': $this->data_currency = '£'; break;
+                case 'yen': $this->data_currency = 'Â¥'; break;
+                case 'pound': $this->data_currency = 'Â£'; break;
+                case 'lira': $this->data_currency = 'Â£'; break;
                 // Euro doesn't display properly
                 // Franc doesn't display properly
                 default: $this->data_currency = $currency_type; break;
@@ -1283,7 +1283,7 @@ class PHPGraphLib {
 
 	protected function formatDataAsDegrees($input)
 	{
-		return $input . '°';
+		return $input . 'Â°';
 	}
 
 	protected function formatDataAsGeneric($input)
@@ -1313,6 +1313,10 @@ class PHPGraphLib {
 				'color' => $color, 
 				'style' => $style
 			);
+			if($yValue > $this->data_max) {
+				$this->data_range_max = $yValue;
+				$this->bool_user_data_range = true;
+			}
 		}
 		else {
 			$this->error[] = "Goal line Y axis value not specified properly.";
