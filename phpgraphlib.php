@@ -764,9 +764,9 @@ class PHPGraphLib {
 	{
 		//draw goal lines if present (after grid) - doesn't get executed if array empty
 		foreach ($this->goal_line_array as $goal_line_data) {
-		    $yLocation = $goal_line_data['yValue'];
-		    $style = $goal_line_data['style'];
-		    $color = $goal_line_data['color'] ? $goal_line_data['color'] : $this->goal_line_color;
+			$yLocation = $goal_line_data['yValue'];
+			$style = $goal_line_data['style'];
+			$color = $goal_line_data['color'] ? $goal_line_data['color'] : $this->goal_line_color;
 			$yLocation = round(($this->x_axis_y1 - ($yLocation * $this->unit_scale) + $adjustment));
 
 			if ($style == 'dashed') {
@@ -1197,18 +1197,18 @@ class PHPGraphLib {
 	}
 
 	public function setDataCurrency($currency_type = 'dollar')
-        {
-            switch (strtolower($currency_type)) {
-                case 'dollar': $this->data_currency = '$'; break;
-                case 'yen': $this->data_currency = '¥'; break;
-                case 'pound': $this->data_currency = '£'; break;
-                case 'lira': $this->data_currency = '£'; break;
-                // Euro doesn't display properly
-                // Franc doesn't display properly
-                default: $this->data_currency = $currency_type; break;
-            }
-            $this->data_additional_length += strlen($this->data_currency);
-        }
+	{
+		switch (strtolower($currency_type)) {
+			case 'dollar': $this->data_currency = '$'; break;
+			case 'yen': $this->data_currency = '¥'; break;
+			case 'pound': $this->data_currency = '£'; break;
+			case 'lira': $this->data_currency = '£'; break;
+			// Euro doesn't display properly
+			// Franc doesn't display properly
+			default: $this->data_currency = $currency_type; break;
+		}
+		$this->data_additional_length += strlen($this->data_currency);
+	}
 
 	protected function applyDataCurrency($input)
 	{
@@ -1303,11 +1303,10 @@ class PHPGraphLib {
 	public function setGoalLine($yValue, $color = null, $style = 'solid')
 	{
 		if (is_numeric($yValue)) {
-		    if ($color) {
+			if ($color) {
 				$this->setGenericColor($color, '$this->goal_line_custom_color', "Goal line color not specified properly.");	
 				$color = $this->goal_line_custom_color;
 			}
-		
 			$this->goal_line_array[] = array(
 				'yValue' => $yValue, 
 				'color' => $color, 
@@ -1317,8 +1316,7 @@ class PHPGraphLib {
 				$this->data_range_max = $yValue;
 				$this->bool_user_data_range = true;
 			}
-		}
-		else {
+		} else {
 			$this->error[] = "Goal line Y axis value not specified properly.";
 		}
 	}
