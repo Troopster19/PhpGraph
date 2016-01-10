@@ -1144,18 +1144,13 @@ class PHPGraphLib {
 		}
 	}
 
-	public function setXValuesModulo($value) 
+	public function setXValuesInterval($value)
 	{
 		if (is_int($value) && $value > 0) {
 			$this->x_axis_value_interval = $value;
 		} else {
 			$this->error[] = "Value arg for setXValuesInterval() not specified properly.";
 		}
-	}
-
-	public function setXValuesInterval($value) 
-	{
-		$this->setXValuesModulo($value);
 	}
 
 	public function setBarOutline($bool) 
