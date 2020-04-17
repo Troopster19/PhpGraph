@@ -1,11 +1,22 @@
 {
-    "name": "elliottb/phpgraphlib",
+    "name": "phpgraph/phpgraph",
     "type": "library",
     "description": "PHP Graphing Library that creates graphs natively in PHP",
     "keywords": ["graph","graphs", "graphing", "gd"],
-    "homepage": "http://github.com/elliottb/phpgraphlib",
+    "homepage": "http://github.com/phpgraph/phpgraph",
     "license": "MIT",
     "require": {
         "php": ">=5.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpGraph\\": "src/"
+        }
+    },
+    "archive": {
+        "exclude": ["/tests"]
     }
 }
