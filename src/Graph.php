@@ -370,9 +370,16 @@
 
 				$key = key($data_set);
 
-				if(!is_numeric($key))
+				if(!is_null($key))
 				{
-					$key = array_flip(array_keys($data_set))[key($data_set)];
+					if(!is_numeric($key))
+					{
+						$key = array_flip(array_keys($data_set))[key($data_set)];
+					}
+				}
+				else
+				{
+					$key = 0;
 				}
 
 				$xStart = $this->y_axis_x1 + ($this->space_width / 2) + (($key - $this->lowest_x) * ($this->bar_width + $this->space_width));
