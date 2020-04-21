@@ -186,6 +186,8 @@
 
 		protected $bool_timeline = false;
 		protected $time_line_array = array();
+		protected $trendLineColor = false;
+		protected $trendLineColorInverted = false;
 
 		public function __construct($width, $height)
 		{
@@ -207,6 +209,11 @@
 			//header must be sent before any html or blank space output
 			if (!$output_file) {
 				header("Content-type: image/png");
+			}
+
+			if($this->trendLineColor)
+			{
+				$this->colorTrendLine();
 			}
 
 			//main class method - called last
@@ -1771,68 +1778,71 @@
 			}
 		}
 
-		public function setTrendColor($bool, $invert = null)
+		private function colorTrendLine()
 		{
-			if (is_bool($bool))
+			$count = count($this->data_array[0]);
+			$i = 0;
+
+			foreach($this->data_array[0] as $value)
 			{
-				$count = count($this->data_array[0]);
-				$i = 0;
-
-				foreach($this->data_array[0] as $value)
+				if ($i == 0)
 				{
-					if ($i == 0)
-					{
-						$startOfDataSet = $value;
-					}
-					if ($i == $count - 2)
-					{
-						$secondFromEnd = $value;
-					}
-					if ($i == $count - 1)
-					{
-						$lastDataSet = $value;
-					}
-
-					$i++;
+					$startOfDataSet = $value;
+				}
+				if ($i == $count - 2)
+				{
+					$secondFromEnd = $value;
+				}
+				if ($i == $count - 1)
+				{
+					$lastDataSet = $value;
 				}
 
-				if (strlen($invert) > 0)
-				{
-					$greenLine = '#FF1414';
-					$redLine = '#26FF38';
-					$yellowLine = '#FF9914';
-					$orangeLine = '#D0FF00';
-				}
-				else
-				{
-					$greenLine = '#26FF38';
-					$redLine = '#FF1414';
-					$yellowLine = '#D0FF00';
-					$orangeLine = '#FF9914';
-				}
+				$i++;
+			}
 
-				if ($lastDataSet >= $startOfDataSet)
+			if ($this->invert)
+			{
+				$greenLine = '#FF1414';
+				$redLine = '#26FF38';
+				$yellowLine = '#FF9914';
+				$orangeLine = '#D0FF00';
+			}
+			else
+			{
+				$greenLine = '#26FF38';
+				$redLine = '#FF1414';
+				$yellowLine = '#D0FF00';
+				$orangeLine = '#FF9914';
+			}
+
+			if ($lastDataSet >= $startOfDataSet)
+			{
+				if ($lastDataSet >= $secondFromEnd)
 				{
-					if ($lastDataSet >= $secondFromEnd)
-					{
-						$this->setLineColor($greenLine); // green
-					}
-					else
-					{
-						$this->setLineColor($yellowLine); // yellow
-					}
+					$this->setLineColor($greenLine); // green
 				}
 				else
 				{
-					if ($lastDataSet >= $secondFromEnd)
-					{
-						$this->setLineColor($orangeLine); // orange
-					}
-					else
-					{
-						$this->setLineColor($redLine); //red
-					}
+					$this->setLineColor($yellowLine); // yellow
 				}
 			}
+			else
+			{
+				if ($lastDataSet >= $secondFromEnd)
+				{
+					$this->setLineColor($orangeLine); // orange
+				}
+				else
+				{
+					$this->setLineColor($redLine); //red
+				}
+			}
+		}
+
+		public function setTrendColor(bool $bool = true, $invert = false)
+		{
+			$this->trendLineColor = $bool;
+			$this->trendLineColorInverted = $invert;
 		}
 	}
