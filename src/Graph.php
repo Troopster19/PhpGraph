@@ -1801,7 +1801,7 @@
 				$i++;
 			}
 
-			if ($this->invert)
+			if ($this->trendLineColorInverted)
 			{
 				$greenLine = '#FF1414';
 				$redLine = '#26FF38';
