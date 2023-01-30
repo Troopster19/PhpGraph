@@ -39,7 +39,8 @@
 	*/
 	class StackedGraph extends Graph
 	{
-
+		protected $data_value_padding;
+		
 		protected function generateBars()
 		{
 			$this->finalizeColors();

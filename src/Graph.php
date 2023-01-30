@@ -189,6 +189,19 @@
 		protected $trendLineColor = false;
 		protected $trendLineColorInverted = false;
 
+		protected $timeLine;
+		protected $timex1;
+		protected $timey1;
+		protected $timex2;
+		protected $timey2;
+		protected $thickness;
+		protected $time_line_color;
+		protected $goal_line_custom_color;
+		protected $time_line_custom_color;
+		protected $title_text;
+		protected $title_x;
+		protected $title_y;
+
 		public function __construct($width, $height)
 		{
 			$this->width = $width;
@@ -444,7 +457,7 @@
 						imagesetthickness($this->image, $this->thickness);
 
 						if (isset($lineX2)) {
-							imageline($this->image, $lineX2, $lineY2, $lineX1, $lineY1, $this->line_color[$data_set_num]);
+							imageline($this->image, (int)$lineX2, (int)(!is_null($lineY2)) ? $lineY2 : 0, (int)$lineX1, (int)$lineY1, $this->line_color[$data_set_num]);
 							$lineX2 = $lineX1;
 							$lineY2 = $lineY1;
 						} else {
@@ -775,17 +788,17 @@
 		{
 			//loop through and display values
 			foreach ($this->horiz_grid_lines as $line) {
-				imageline($this->image, $line['x1'], $line['y1'], $line['x2'], $line['y2'] , $line['color']);
+				imageline($this->image, (int)$line['x1'], (int)$line['y1'], (int)$line['x2'], (int)$line['y2'] , $line['color']);
 			}
 			foreach ($this->vert_grid_lines as $line) {
-				imageline($this->image, $line['x1'], $line['y1'], $line['x2'], $line['y2'] , $line['color']);
+				imageline($this->image, (int)$line['x1'], (int)$line['y1'], (int)$line['x2'], (int)$line['y2'] , $line['color']);
 			}
 			foreach ($this->horiz_grid_values as $value) {
-				imagestring($this->image, $value['size'], $value['x'], $value['y'], $value['value'], $value['color']);
+				imagestring($this->image, (int)$value['size'], (int)$value['x'], (int)$value['y'], (int)$value['value'], $value['color']);
 			}
 			//not implemented in the base library, but used in extensions
 			foreach ($this->vert_grid_values as $value) {
-				imagestring($this->image, $value['size'], $value['x'], $value['y'], $value['value'], $value['color']);
+				imagestring($this->image, (int)$value['size'], (int)$value['x'], (int)$value['y'], (int)$value['value'], $value['color']);
 			}
 		}
 
@@ -846,7 +859,7 @@
 				$this->title_x = $this->x_axis_x2 - ($titleLength * self::TITLE_CHAR_WIDTH);
 				$this->title_y = $textVertPos;
 			}
-			imagestring($this->image, 2, $title_x , $title_y , $this->title_text,  $this->title_color);
+			imagestring($this->image, 2, (int)$title_x, (int)$title_y, (int)$this->title_text, $this->title_color);
 		}
 
 		protected function calcTopMargin()

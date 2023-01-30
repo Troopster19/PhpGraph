@@ -80,6 +80,9 @@
 			'brown', 'gray', 'pastel_purple', 'olive', 'aqua', 'yellow', 'teal', 'lime'
 		);
 
+		protected $label_text_color;
+		protected $title_text;
+
 		protected function calcCoords()
 		{
 			//calc coords of pie center and width/height
