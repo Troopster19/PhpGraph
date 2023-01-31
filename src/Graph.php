@@ -457,7 +457,7 @@
 						imagesetthickness($this->image, $this->thickness);
 
 						if (isset($lineX2)) {
-							imageline($this->image, (int)$lineX2, (int)(!is_null($lineY2)) ? $lineY2 : 0, (int)$lineX1, (int)$lineY1, $this->line_color[$data_set_num]);
+							imageline($this->image, (int)$lineX2, (int)((!is_null($lineY2)) ? $lineY2 : 0), (int)$lineX1, (int)$lineY1, $this->line_color[$data_set_num]);
 							$lineX2 = $lineX1;
 							$lineY2 = $lineY1;
 						} else {
@@ -829,12 +829,12 @@
 
 		protected function generateXAxis()
 		{
-			imageline($this->image, $this->x_axis_x1, $this->x_axis_y1, $this->x_axis_x2, $this->x_axis_y2, $this->x_axis_color);
+			imageline($this->image, (int)$this->x_axis_x1, (int)$this->x_axis_y1, (int)$this->x_axis_x2, (int)$this->x_axis_y2, $this->x_axis_color);
 		}
 
 		protected function generateYAxis()
 		{
-			imageline($this->image, $this->y_axis_x1, $this->y_axis_y1, $this->y_axis_x2, $this->y_axis_y2, $this->y_axis_color);
+			imageline($this->image, (int)$this->y_axis_x1, (int)$this->y_axis_y1, (int)$this->y_axis_x2, (int)$this->y_axis_y2, $this->y_axis_color);
 		}
 
 		protected function generateBackgound()
