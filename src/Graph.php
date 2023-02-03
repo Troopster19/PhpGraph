@@ -1650,12 +1650,12 @@
 			$this->legend_y = ($highestElement / 2) - ($this->legend_height / 2); //centered
 
 			//draw background
-			imagefilledrectangle($this->image, $this->legend_x, $this->legend_y, $this->legend_x + $this->legend_width,
-				$this->legend_y + $this->legend_height, $this->legend_color);
+			imagefilledrectangle($this->image, (int)$this->legend_x, (int)$this->legend_y, (int)$this->legend_x + (int)$this->legend_width,
+				(int)$this->legend_y + (int)$this->legend_height, $this->legend_color);
 
 			//draw border
-			imagerectangle($this->image, $this->legend_x, $this->legend_y, $this->legend_x + $this->legend_width,
-				$this->legend_y + $this->legend_height, $this->legend_outline_color);
+			imagerectangle($this->image, (int)$this->legend_x, (int)$this->legend_y, (int)$this->legend_x + (int)$this->legend_width,
+				(int)$this->legend_y + (int)$this->legend_height, $this->legend_outline_color);
 
 			$length_covered = 0;
 			for ($i = 0; $i < $this->data_set_count; $i++) {
@@ -1676,9 +1676,9 @@
 				} elseif ($this->bool_line && !$this->bool_bars) {
 					$color = $this->line_color[$this->data_set_count - $i - 1];
 				}
-				imagefilledrectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $color);
-				imagerectangle($this->image, $xValue, $yValue + $swatchToTextOffset, $xValue + $swatchSize, $yValue + $swatchToTextOffset + $swatchSize, $this->legend_swatch_outline_color);
-				imagestring($this->image, 2, $xValue + (2 * self::LEGEND_PADDING + 2), $yValue, $data_label, $this->legend_text_color);
+				imagefilledrectangle($this->image, (int)$xValue, (int)$yValue + (int)$swatchToTextOffset, (int)$xValue + (int)$swatchSize, (int)$yValue + (int)$swatchToTextOffset + (int)$swatchSize, $color);
+				imagerectangle($this->image, (int)$xValue, (int)$yValue + (int)$swatchToTextOffset, (int)$xValue + (int)$swatchSize, (int)$yValue + (int)$swatchToTextOffset + (int)$swatchSize, $this->legend_swatch_outline_color);
+				imagestring($this->image, 2, (int)$xValue + (int)(2 * self::LEGEND_PADDING + 2), (int)$yValue, (int)$data_label, $this->legend_text_color);
 			}
 		}
 
