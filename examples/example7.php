@@ -33,7 +33,6 @@
 	$graph->setDataPointColor('maroon');
 	$graph->setDataValues(true);
 	$graph->setDataValueColor('maroon');
-	$graph->setGoalLine(.0025);
-	$graph->setGoalLineColor('red');
+	$graph->setGoalLine(.0025, 'red');
 
 	$graph->createGraph(basename(__FILE__, '.php') . '.png');

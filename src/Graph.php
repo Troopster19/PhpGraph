@@ -859,7 +859,7 @@
 				$this->title_x = $this->x_axis_x2 - ($titleLength * self::TITLE_CHAR_WIDTH);
 				$this->title_y = $textVertPos;
 			}
-			imagestring($this->image, 2, (int)$title_x, (int)$title_y, (int)$this->title_text, $this->title_color);
+			imagestring($this->image, 2, (int)$title_x, (int)$title_y, (string)$this->title_text, $this->title_color);
 		}
 
 		protected function calcTopMargin()
@@ -1678,7 +1678,7 @@
 				}
 				imagefilledrectangle($this->image, (int)$xValue, (int)$yValue + (int)$swatchToTextOffset, (int)$xValue + (int)$swatchSize, (int)$yValue + (int)$swatchToTextOffset + (int)$swatchSize, $color);
 				imagerectangle($this->image, (int)$xValue, (int)$yValue + (int)$swatchToTextOffset, (int)$xValue + (int)$swatchSize, (int)$yValue + (int)$swatchToTextOffset + (int)$swatchSize, $this->legend_swatch_outline_color);
-				imagestring($this->image, 2, (int)$xValue + (int)(2 * self::LEGEND_PADDING + 2), (int)$yValue, (int)$data_label, $this->legend_text_color);
+				imagestring($this->image, 2, (int)$xValue + (int)(2 * self::LEGEND_PADDING + 2), (int)$yValue, (string)$data_label, $this->legend_text_color);
 			}
 		}
 
