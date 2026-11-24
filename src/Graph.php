@@ -285,7 +285,13 @@
 			} else {
 				imagepng($this->image);
 			}
-			imagedestroy($this->image);
+			//free the image. Before PHP 8.0 GD images are resources that must be destroyed
+			//explicitly; from 8.0 they are GdImage objects freed when no longer referenced,
+			//and imagedestroy() is deprecated as of PHP 8.5.
+			if (PHP_VERSION_ID < 80000) {
+				imagedestroy($this->image);
+			}
+			$this->image = null;
 		}
 
 		protected function setupData()
